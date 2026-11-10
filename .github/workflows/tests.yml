@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        lua: ['5.1', '5.2', '5.3', '5.4', 'luajit-2.1']
+        lua: ['5.1', '5.2', '5.3', '5.4']
     steps:
       - uses: actions/checkout@v4
       - uses: leafo/gh-actions-lua@v11
@@ -20,3 +20,11 @@ jobs:
       - run: luarocks make --deps-mode=none
       - run: busted -o TAP spec
       - run: luarocks lint *.rockspec
+  luajit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leafo/gh-actions-lua@v11
+        with:
+          luaVersion: 'luajit-2.1'
+      - run: lua spec/luajit_smoke.lua
