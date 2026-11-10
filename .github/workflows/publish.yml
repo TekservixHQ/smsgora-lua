@@ -1,0 +1,21 @@
+# Uploads the rockspec to luarocks.org when a version tag (v1.2.3) is pushed.
+# Needs the LUAROCKS_API_KEY secret (luarocks.org -> Settings -> API keys).
+name: publish
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leafo/gh-actions-lua@v11
+        with:
+          luaVersion: '5.4'
+      - uses: leafo/gh-actions-luarocks@v5
+      - run: luarocks upload *-${GITHUB_REF_NAME#v}-1.rockspec --api-key="$LUAROCKS_API_KEY" --skip-pack
+        env:
+          LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
