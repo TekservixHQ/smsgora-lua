@@ -1,12 +1,12 @@
 rockspec_format = "3.0"
 package = "smsgora"
-version = "1.0.0-1"
+version = "1.0.1-1"
 source = {
   url = "git+https://github.com/TekservixHQ/smsgora-lua.git",
-  tag = "v1.0.0",
+  tag = "v1.0.1",
 }
 description = {
-  summary = "Lua client for the SMS Gora SMS Gateway API: send and receive SMS through your own Android phones.",
+  summary = "SMS Gora SMS Gateway: official Lua client by Tekservix. Send and receive SMS through your own Android phones, with delivery reports and signed webhooks.",
   detailed = [[
 SMS Gora turns Android phones with ordinary SIM cards into an SMS gateway. Send SMS
 and bulk SMS, check delivery status, read incoming SMS and verify signed webhooks.
